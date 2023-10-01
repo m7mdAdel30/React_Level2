@@ -1,30 +1,34 @@
 import "./App.css";
 import "./theme.css";
 // import { useState } from "react";
-import { useReducer } from "react";
+// import { useReducer } from "react";
+import {Link} from 'react-router-dom';
+import {useContext } from "react";
+import ThemeContext from "./context/dataCont";
 
-const reducer = (state, action) => {
-  switch (action.type) {
-    case "CHANGE_NAME":
-      return { ...state, name: action.setValue };
-    case "CHANGE_AGE":
-      return { ...state, age: action.setValue };
-    case "CHANGE_COUNT":
-      return { ...state, startCount: action.setValue };
-    case "CHANGE-MODE":
-      return { ...state, mode: action.setValue };
-    default:
-      return state;
-  }
-};
+// const reducer = (state, action) => {
+//   switch (action.type) {
+//     case "CHANGE_NAME":
+//       return { ...state, name: action.setValue };
+//     case "CHANGE_AGE":
+//       return { ...state, age: action.setValue };
+//     case "CHANGE_COUNT":
+//       return { ...state, startCount: action.setValue };
+//     case "CHANGE-MODE":
+//       return { ...state, mode: action.setValue };
+//     default:
+//       return state;
+//   }
+// };
 
 function App() {
-  const initialData = {
-    name: "Mohamed Adel",
-    age: 22,
-    startCount: 0,
-    mode: "Light",
-  };
+  const {name} = useContext(ThemeContext);
+  // const initialData = {
+  //   name: "Mohamed Adel",
+  //   age: 22,
+  //   startCount: 0,
+  //   mode: "Light",
+  // };
   // const [person, setPerson] = useState("Mohamed Adel");
   // const [age, setage] = useState("22");
   // const [count, setcount] = useState(0);
@@ -34,11 +38,14 @@ function App() {
   //   setage("25");
   // };
 
-  const [Data, dispatch] = useReducer(reducer, initialData);
+  // const [Data, dispatch] = useReducer(reducer, initialData);
 
   return (
-    <div className={`App ${Data.mode} `}>
-      <button onClick={() => {
+    <div className={`App`}>
+      <Link to='/Page2' >Go To PAGE2</Link>
+
+
+      {/* <button onClick={() => {
         dispatch({ type: "CHANGE-MODE", setValue: Data.mode == 'Light' ? 'Dark' : 'Light' });
       }} className="toggleButton">Toggle Theme</button>
 
@@ -77,16 +84,18 @@ function App() {
         <button onClick={() => {
           dispatch({ type: "CHANGE-MODE", setValue: 'Pink' });
         }}  style={{ marginRight: "26px" }}>Pink</button>
-      </div>
+      </div> */}
 
-      <h2>My name is {Data.name} </h2>
-      <button onClick={() => {
-        dispatch({ type: "CHANGE_NAME", setValue: 'Mido Fisha' });
-      }} >Change name</button>
+      <h2>My name is {name} </h2>
+      <button 
+      // onClick={() => {
+        // dispatch({ type: "CHANGE_NAME", setValue: 'Mido Fisha' });
+      // }} 
+      >Change name</button>
       <br />
       <br />
 
-      <h2>My Age is {Data.age} Years Old</h2>
+      {/* <h2>My Age is {Data.age} Years Old</h2>
       <button onClick={() => {
         dispatch({ type: "CHANGE_AGE", setValue: '27' });
       }}>Change Age</button>
@@ -97,7 +106,7 @@ function App() {
       <br />
       <button onClick={() => {
         dispatch({ type: "CHANGE_COUNT", setValue: Data.startCount+1 });
-      }} >count is {Data.startCount} </button>
+      }} >count is {Data.startCount} </button> */}
     </div>
   );
 }
